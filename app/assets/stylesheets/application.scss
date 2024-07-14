@@ -3,10 +3,35 @@
 @import "config/colors";
 @import "config/bootstrap_variables";
 
+
 // External libraries
 @import "bootstrap";
 @import "font-awesome";
 
+
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+// * {
+//   background-color: black;
+//   color: white;
+// }
+
+nav  {
+  background-image: url('https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExa25ndzltdWFzZTc4bDNpd2djbmo0MjFsMHRpYm1rb2V2N3B3cmE4YiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/IcTPgN5cI0Ij464QCa/giphy.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+}
+
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+img {
+  object-fit: cover;
+}

@@ -3,3 +3,8 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "@popperjs/core"
 import "bootstrap"
+import "stylesheets/application"
+
+import Alpine from 'alpinejs';
+window.Alpine = Alpine;
+Alpine.start();

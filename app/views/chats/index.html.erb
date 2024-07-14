@@ -1,0 +1,73 @@
+<div class="flex h-screen bg-gray-100">
+  <!-- Sidebar for chat list -->
+  <div class="w-1/4 bg-white overflow-y-auto">
+    <div class="p-5 border-b border-gray-200">
+      <h2 class="text-lg text-gray-700 font-semibold">Chats</h2>
+    </div>
+    <ul>
+      <% @chats.each do |chat| %>
+        <li class="p-4 hover:bg-gray-50 cursor-pointer border-b border-gray-200">
+          <div class="flex items-center space-x-3">
+            <div class="flex-shrink-0">
+              <img class="h-10 w-10 rounded-full" src="<%= chat.user_avatar %>" alt="chat avatar">
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-medium text-gray-900 truncate">
+                <%= chat.user_name %>
+              </p>
+              <p class="text-sm text-gray-500 truncate">
+                <%= chat.last_message_preview %>
+              </p>
+            </div>
+            <div class="flex-shrink-0 text-sm text-gray-500">
+              <%= chat.last_message_time %>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <!-- Chat window -->
+  <div class="flex-1 flex flex-col bg-white">
+    <!-- Chat header -->
+    <div class="p-6 border-b border-gray-200">
+      <div class="flex items-center space-x-4">
+        <div class="flex-shrink-0">
+          <img class="h-10 w-10 rounded-full" src="<%= @current_chat.user_avatar %>" alt="Profile image">
+        </div>
+        <div class="flex-1 min-w-0">
+          <h2 class="text-xl font-medium text-gray-900 truncate">
+            <%= @current_chat.user_name %>
+          </h2>
+        </div>
+      </div>
+    </div>
+    <!-- Chat messages area -->
+    <div class="flex-1 overflow-y-auto p-6">
+      <% @current_chat.messages.each do |message| %>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0">
+            <img class="h-8 w-8 rounded-full" src="<%= message.user_avatar %>" alt="">
+          </div>
+          <div class="flex-1">
+            <div class="bg-gray-100 rounded-lg p-4">
+              <p class="text-gray-800">
+                <%= message.content %>
+              </p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <!-- Input area -->
+    <div class="p-6">
+      <%= form_with model: @new_message, url: chat_messages_path(@current_chat), local: true do |f| %>
+        <div class="flex">
+          <%= f.text_field :content, class: "flex-1 rounded-full border-gray-300 shadow-sm", placeholder: "Type a message..." %>
+          <%= f.submit "Send", class: "ml-4 bg-blue-500 text-white rounded-full px-4 py-2" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

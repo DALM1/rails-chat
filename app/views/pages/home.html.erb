@@ -1,2 +1,86 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DALM|CHAT</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %>
+</head>
+<body>
+  <div class="flex h-screen bg-gray-100">
+    <!-- Sidebar for chat list -->
+    <div class="w-1/4 bg-white overflow-y-auto">
+      <div class="p-5 border-b border-gray-200 flex justify-between items-center">
+        <h2 class="text-lg text-gray-700 font-semibold"></h2>
+        <!-- Form for adding new user -->
+        <%= form_with url: users_path, method: :post, class: 'flex items-center space-x-2' do %>
+          <%= text_field_tag :new_user_email, nil, placeholder: 'Enter new user email', class: 'rounded-full border-gray-300 shadow-sm p-1 text-sm' %>
+          <%= submit_tag 'Add', class: 'bg-blue-500 text-white rounded-full px-2 py-1 text-sm' %>
+        <% end %>
+      </div>
+      <ul>
+        <!-- Repeat this list item for each chat in the list -->
+        <li class="p-4 hover:bg-gray-50 cursor-pointer border-b border-gray-200">
+          <div class="flex items-center space-x-3">
+            <div class="flex-shrink-0">
+              <img class="h-10 w-10 rounded-full" src="https://kitt.lewagon.com/placeholder/users/random" alt="chat avatar">
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-medium text-gray-900 truncate">
+                Username
+              </p>
+              <p class="text-sm text-gray-500 truncate">
+                Last message preview...
+              </p>
+            </div>
+            <div class="flex-shrink-0 text-sm text-gray-500">
+              4:00 PM
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Chat window -->
+    <div class="flex-1 flex flex-col bg-white">
+      <!-- Chat header -->
+      <div class="p-6 border-b border-gray-200">
+        <div class="flex items-center space-x-4">
+          <div class="flex-shrink-0">
+            <img class="h-10 w-10 rounded-full" src="https://kitt.lewagon.com/placeholder/users/random" alt="Profile image">
+          </div>
+          <div class="flex-1 min-w-0">
+            <h2 class="text-xl font-medium text-gray-900 truncate">
+              Username
+            </h2>
+          </div>
+        </div>
+      </div>
+      <!-- Chat messages area -->
+      <div class="flex-1 overflow-y-auto p-6 max-h-full">
+        <!-- Repeat for each message -->
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0">
+            <img class="h-8 w-8 rounded-full" src="https://kitt.lewagon.com/placeholder/users/random" alt="">
+          </div>
+          <div class="flex-1">
+            <div class="bg-gray-100 rounded-lg p-4">
+              <p class="text-gray-800">
+                Message content goes here...
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Input area -->
+      <div class="p-4 border-t border-gray-200">
+        <form action="#" method="POST">
+          <input type="text" class="w-full rounded-full border-gray-300 shadow-sm p-2" placeholder="Type a message...">
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
